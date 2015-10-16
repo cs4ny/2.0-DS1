@@ -1,0 +1,124 @@
+#DS1
+#Set 4
+
+#1. Write a function, called median,
+#that will take in a list of numbers
+#and then calculate and return the median of the list.
+#The function should not change the list that is passed into it.
+#Remember:  median of a list with an odd number of elements
+#is the middle element of the sorted list; median of a list with
+#an even number of elements
+#is the average of the two middle elements of the sorted list.
+
+#start median()
+
+def median(aList):
+    """ This function will calculate the median of a list. """
+
+    #Create a new List sorted
+    newList = sorted(aList)
+
+    #If statement for even and odd numbers of list
+    #length variable
+    length = len(newList)
+
+    #If the list has an even number of elements
+    if length %2 == 0:
+
+        #Take the middle number of the sorted list
+        medianNum = (newList[length//2])
+    
+    #Else the list has an odd number of elements
+    else:
+
+        #Find the middle position
+        middleIndex = length//2
+
+        #Get the first middle number
+        middle1 = newList[middleIndex]
+
+        #Get the second middle number
+        middle2 = middle1 + 1
+
+        #Find the average
+        medianNum = (middle1 + middle2) / 2
+
+    return medianNum
+#end median()
+
+
+#Testing median function
+myList = [1, 23, 5, 89, 789, 45]
+myList2 = [1, 23, 5, 89, 789, 45 , 46 ]
+print("The median of the list",myList, "is",median(myList))
+print("The median of the list",myList2, "is",median(myList2))
+
+
+
+
+#2. Nickname Generator
+#Create a list of nickNames like:
+#“the Enforcer”, “the Mad Scientist”, etc
+#Ask the user for their first and last name.
+#Then generate a nickname using: firstName, nickName,
+#lastName by selecting a random nickName from the list.
+#(eg.  John ‘the Enforcer’ Smith )
+#Extension:  Add a program loop to allow the user to
+#continue generating unique random nicknames until there are no nicknames left.
+
+import random
+#start main()
+
+def main():
+    """ This function will create a nick name for the user. """
+
+    #Create a list of nicknames
+    nicknamesList = ["the Enforcer","the Superman","the Batman", "the Vocal Bible","King of Country","Mr.Dynamite"]
+
+    #User's input
+    firstName = input("Please enter your first name: ")
+    lastName = input("Please enter your last name: ")
+
+    #Main loop
+    loop = True
+    while loop == True:
+        print()
+        cont = input("Press enter for a nick name or 'e' to exit this program")
+
+        #If user wants to stop
+        if cont == "e":
+            loop = False
+        #User wants to continue
+        else:
+            print("Your nickname is", firstName, nicGen(nicknamesList) , lastName)
+        
+#end main()
+            
+
+#start nicGen()
+
+def nicGen(aList):
+
+    #Check if there are no more nicknames left in the list
+    if len(aList) == 0:
+        print()
+        print("Sorry, there are no more nick names left in the system.")
+        exit()
+    else:
+        
+        #Random index
+        randIndex = random.randrange(len(aList))
+
+        #Generate a random nick name and removal of index
+        nickname = aList[randIndex]
+
+        #Removal of the used nickname/ By index
+        aList.pop(randIndex)
+
+    return nickname
+
+#end nicGen
+
+main()
+
+    
