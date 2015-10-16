@@ -1,0 +1,68 @@
+#DS1
+#Set 7
+
+import random
+
+#1 Complete the following, given the 2D list,grid, below:
+
+grid = [ ["a","b","c" ],
+         ["d","e","f" ],
+         ["g","h","i" ],
+         ["j","k","l" ],
+         ["m","n","o" ] ]
+
+print(grid[3][1])           #k
+print(grid[0][2])           #c
+print(grid[3][0])           #j
+grid[2][0] = "G"            #g to G
+grid[4][1] = "N"            #n to N
+
+print(grid)
+
+
+
+#2 Write code to create a grid with the following criteria:
+
+numColumns = 3
+numRows = 3
+
+# 3 x 3 grid with all values initialized to 7.
+grid = []
+
+for row in range(numRows):
+    grid.append([])
+    for columns in range (numColumns):
+        grid[row].append(7)
+
+print(grid)
+
+# 20 x 50 grid with all values initialized to 1.
+
+grid2 =[]
+numColumns = 20
+numRows = 50
+
+for row in range(numRows):
+    grid2.append([])
+    for columns in range(numColumns):
+        grid2[row].append(1)
+
+print(grid2)
+
+
+# 60 x 80 grid with all values initialized
+# to random numbers between 1 and 6, inclusive.
+
+grid3 = []
+numColumns = 60
+numRows = 80
+
+for row in range(numRows):
+    grid3.append([])
+    for columns in range(numColumns):
+        grid3[row].append(random.randint(1,6))
+print(grid3)
+
+
+
+
