@@ -1,0 +1,156 @@
+#Hangman Graphics
+
+import pygame
+import random
+
+# Needed to initialize pygame
+pygame.init()
+
+# Define some Constants
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+GREY = (96, 96, 96)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+YELLOW = (255, 255, 0)
+PURPLE = (255, 0, 255)
+ORANGE = (255, 128, 0)
+
+
+SCREEN_WIDTH = 600
+SCREEN_HEIGHT = 600
+
+# Create a screen
+size = [SCREEN_WIDTH,SCREEN_HEIGHT]
+screen = pygame.display.set_mode(size)
+pygame.display.set_caption("Hangman")
+
+# Used to manage how fast the screen updates
+clock = pygame.time.Clock()
+
+#Create a list of word
+wordList = ["hello","paper","computer","monitor"]
+
+#Select a random word for hangman
+ranIndex = random.randrange(len(wordList))
+ranWord = wordList[ranIndex]
+
+#Turn the word into a list and create spaces
+ranWord = list(ranWord)
+wordSpaces = len(ranWord)
+guessList = []
+
+#Create spaces in an empty list
+for spaces in range(wordSpaces):
+    guessList.append(" ")
+
+#Number of lives the user has
+numLives = 6
+
+print(ranWord)
+            
+
+#Loop until the user clicks the close button.
+loop = True
+
+# -------- Main Program Loop -----------
+while loop:
+    # EVENT PROCESSING
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            loop = False
+            
+        #GUESSING
+        elif guessList != ranWord:
+
+            #Ask user for input
+            userLetter = input("Enter a letter: ")
+
+            #Check if letter is in ranWord
+            if userLetter in ranWord:
+
+                #Loop for each letter
+                for index in range(len(ranWord)):
+                    if userLetter == ranWord[index]:
+                        letterConfirm = True
+
+                        #If letter is the same as letter in the random word
+                        if letterConfirm:
+                            guessList.pop(index)
+                            guessList.insert(index,userLetter)
+
+                        #If the user guessed the word
+                        if guessList == ranWord:
+                            print("You've guessed it: The answer is", "".join(ranWord))
+
+                #Print what user have guessed and their number of lives
+                print(guessList)
+                print("You have",numLives," lives")    
+                
+
+            #If not guess again
+            else:
+
+                #Loses 1 life
+                numLives -=1
+                print(guessList)
+                print("You have",numLives," lives left")
+
+                #Check if the number of lives is equal to 0
+                if numLives == 0:
+                    print("Game Over")
+                    guessList = ranWord 
+                else:
+                    pass
+
+            
+    # DRAW COMMANDS
+    screen.fill(WHITE)
+
+    #Stand
+    pygame.draw.line(screen,BLACK,[500, 50],[500,150],5)
+    pygame.draw.line(screen,BLACK,[350, 50],[500,50],5)
+    pygame.draw.line(screen,BLACK,[350, 50],[350,300],5)
+    pygame.draw.line(screen,BLACK,[300, 300],[500,300],5)
+    
+
+    #Head
+    if numLives == 5:
+        pygame.draw.ellipse(screen,BLACK,[475,100,45,45])
+
+        #Body
+        if numLives == 4:
+            pygame.draw.line(screen,BLACK,[500, 150],[500,200],5)
+
+            #Arm 1
+            if numLives == 3:
+                pygame.draw.line(screen,BLACK,[500,170],[475,190],5)
+
+                #Arm 2
+                if numLives == 2:
+                    pygame.draw.line(screen,BLACK,[525,190],[500,170],5)
+
+                    #Leg 1
+                    if numLives == 1:
+                        pygame.draw.line(screen,BLACK,[500,200],[480,220],5)
+
+                        #Leg 2
+                        if numLives == 0:
+                            pygame.draw.line(screen,BLACK,[500,200],[525,220],5)
+        
+    #Spaces for words(*2 = 1)
+    for spaces in range(100,100*(wordSpaces+1),50):
+        pygame.draw.line(screen,BLACK,[spaces, 400],[spaces+25,400],5)
+
+   
+    # Update Screen
+    pygame.display.flip()
+
+    # Set frames per second
+    clock.tick(30)
+# -------- End of Main Program Loop --------
+
+
+# Close the window and quit.
+pygame.quit()
