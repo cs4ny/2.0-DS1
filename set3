@@ -1,0 +1,219 @@
+#DS1
+#SET 3
+
+#1 Create a list of names.
+#Use a “For Loop: By Item” to print out, “Hello _______, have a nice day!”
+#to each name in the list.
+
+#Step 1. Create a List
+nameList = ["Marry","John","Doc","Bob", "Robert"]
+
+#Step 2. Loop
+for name in nameList:
+    print("Hello",name,", have a nice day!")
+
+
+
+#2 Convert the previous question to use a “For Loop: By Index”.
+
+#Step 1. Create a List
+nameList = ["Marry","John","Doc","Bob", "Robert"]
+
+#Step 2. Loop
+for index in range(len(nameList)):
+    print("Hello",nameList[index],"have a nice day!")
+
+
+
+#3 Convert the following loop to a “While Loop”.
+
+# For index loops example
+myList = [2,3,5,8,13,21]
+for index in range(len(myList)):
+    if myList[index]%2 != 0:
+        print(myList[index],"is odd")
+
+#Converted while loop
+#Step 1. Create a LIist
+myList2 = [2,3,5,8,13,21]
+
+#Step 2. Set index to 0
+index = 0
+
+#Step 3. Loop(remember to add to index)
+while index < len(myList2):
+    if myList2[index]%2 != 0:
+        print(myList2[index],"is odd")
+    index +=1
+
+
+
+#4 Wrong code-Fixed
+myList = [1,3,5,7,9]
+
+for item in myList:
+    item +=1
+    print(item)
+
+
+
+
+#5. Write a function, called getMax
+#that will take in a list of numbers
+#and return the maximum number in the list.
+
+def getMax(aList):
+    """ Function will get the maximum value by testing each number in the list. """
+
+    #Set index and max value
+    index = 0
+    maximum = aList[0]
+
+    #Loop
+    while index < len(aList):
+        if aList[index] > maximum:
+            maximum = aList[index]
+        index +=1
+    return maximum
+
+#Testing getMax function
+myList = [1,3,5,7,9]
+print(getMax(myList))
+
+
+
+
+#6 Write a function, called getMin,
+#that will take in a list of numbers
+#and return the minimum number in the list.
+
+def getMin(aList):
+    """ Function will get the minimum value by testing each number in the list. """
+
+    #Set index and minimum value
+    index = 0
+    minimum = aList[0]
+
+    #Loop
+    while index < len(aList):
+        if aList[index] > minimum:
+            minimum = aList[index]
+        index +=1
+    return minimum
+
+#Test getMin function
+myList = [1,3,5,7,9]
+print(getMin(myList))
+
+
+
+
+#7 Write a function, called getSum,
+#that will take in a list of numbers
+#and return the sum of all the numbers in the list.
+
+def getSum(aList):
+    """ Function will add all values in the lsit. """
+
+    #Set index and sum
+    index = 0
+    sumOfList = 0
+
+    #Loop
+    while index < len(aList):
+        sumOfList += aList[index] 
+        index +=1
+
+    return sumOfList
+
+#Test getSum function
+myList = [1,3,5,7,9]
+print(getSum(myList))
+
+
+
+
+#9 Write a function, called find, that will take in an item and a list.
+#The function should search for the item in the list
+#and return the index of the first item it finds
+#or -1 if it doesn’t find the item in the list.
+
+def find(item,aList):
+    """ This function will check if an item is in the list. """
+
+    #Loop
+    for index in range (len(aList)):
+        if item in aList :
+            return aList.index(item)
+        else:
+            return -1
+
+#Test find function
+myList = [1,3,5,7,9]
+print(find(0,myList))
+
+
+
+# 10. A massive earthquake happens and every character in a game needs to lose 3 health points.  
+#Write a function, called earthquake,
+#that will take in the characterHealthList
+#and create and return a new character health list
+#with 3 health points subtracted from each character.
+#Test this function with various lists.
+
+def earthquake(characterHealthList):
+    """ This function will subtract character point by 3. """
+
+    #Empty List
+    healthList = []
+
+    #Loop
+    for character in characterHealthList:
+        healthList.append(character-3)
+    return healthList
+
+
+#Test earthquake function
+myList = [1,3,5,7,9]
+myList2 = [2,3,5,8,13,21]
+print("The earth quake causes",earthquake(myList))
+print("The earth quake causes",earthquake(myList2))
+        
+
+
+
+#10. (cont) Write a function, called removeEliminated,
+#that takes in the characterHealthList
+#and checks to see if any characters
+#have a health status of zero or less.  
+#This function should create
+#and return a new character health list
+#containing all of the characters that are still alive.
+#Test this function with various lists.
+
+def removeEliminated(characterHealthList):
+    """ This function will remove number that is less than 0 """
+
+    #Set new List
+    healthList = []
+
+    #Loop
+    for character in characterHealthList:
+        if character < 0:
+            pass  
+        else:
+            healthList.append(character)
+    return healthList
+
+
+#Test removeEliminated function
+myList = [1,-5,5,7,9]
+myList2 = [2,-3,5,8,0,21]
+print(removeEliminated(myList))
+print(removeEliminated(myList2))
+            
+    
+
+
+
+
