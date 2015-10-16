@@ -1,0 +1,229 @@
+#DS1
+
+#Set 5
+
+#1 Predict the output of the following code:
+aList = [3,6,9,12,15,18]
+
+print( aList[0] )                   #3
+print( aList[1:5] )                 #6,9,12,15
+print( aList[2:4] )                 #9,12
+print( aList[:2] )                  #3,6
+print( aList[3:] )                  #12,15,18
+print( aList[:] )                   #3,6,9,12,15,18
+print( aList[len(aList)-1] )        #18
+
+
+
+#2 Predict the out put of the follwoing code:
+aString = "computing"
+
+print(aString[2])                   #m
+print(aString[3:6])                 #put
+print(aString[5:8])                 #tin
+print(aString[:4])                  #comp
+print(aString[5:])                  #ting
+print(aString[:])                   #computing
+#print(aString[len(aString)])        #Error
+
+
+#3 Write a function, called reverseList, that takes in a list
+# and reverses the elements of the list.
+#Challenge: Write 2 versions of this function: a mutator
+#and a non-mutator function.
+
+#non- mutator function
+def reverseList(aList):
+    """ This function will reverse the elements in a list without changing them."""
+
+    #Create a new list    
+    newList = []
+
+    #Loop 
+    for index in range(len(aList)):
+
+        #Set the first number
+        startIn = aList[index]
+
+        #Set the last number
+        endIn = aList[(len(aList)-1)-index]
+
+        #Swap the first number with the last number
+        startIn = endIn
+
+        #Add the new swaped number to the new list
+        newList.append(startIn)
+
+    #Return the newList        
+    return(newList)
+ 
+theList = [3,6,2,7,9]
+print(reverseList(theList))
+print(theList)
+
+#3. Use the list function and the split() and joint() methods to write code
+# that will use the starting string
+#to generate the ending string for each
+#of the following pairs
+
+fiString = "I Love Python"
+seString = "awesome"
+thiString = "This*is*super*fun"
+
+
+enFiString = fiString.split()
+print(enFiString)
+enFiString = "-".join(fiString)
+print(enFiString)
+
+enSeString = list(seString)
+print (enSeString)
+enSeString = "!".join(enSeString)
+print(enSeString)
+
+enthiString = thiString.split(";")
+print (enthiString)
+enthiString = "*".join(enthiString)
+
+
+
+#4 Write a function, called shuffle, that takes in a string
+#and creates and returns a new string
+#made up of the randomly
+#shuffled characters in the original string
+
+
+import random
+
+def shuffle(aString):
+    """ Switch position of elements randomly in a string """
+
+    #Turn string into list
+    stringList = list(aString)
+
+    #New list
+    newList = []
+
+    #Loop
+    for index in range(len(stringList)):
+        
+        #Create a random index
+        rIndex = random.randrange(len(stringList))
+
+        #Set the first number
+        startElm = stringList[0]
+
+        #Swap the first number with another random number
+        startElm = stringList[rIndex]
+
+        #Add the swapped number to the new list
+        newList.append(startElm)
+
+        #Delete the used element
+        del stringList[rIndex]
+
+
+    return newList
+
+#Test shuffle function
+print(shuffle("Function"))
+
+
+
+#5 Shakespearean Insults
+#Read in the data file, shakespeareanInsults.txt.
+#(Download file from DS1 Examples)
+#The data file contains three columns of insults.
+#Create separate lists to store each column of insults.  
+#The program should repeatedly ask the user
+#if they would like to be insulted or exit.
+#Generate random insults by starting with “Thou”
+#and then a random value from the first column of insults,
+#then a random value from the second column of insults
+#and finally a random value from the third column of insults.
+#“Eg. Thou lumpish common-kissing measle”
+
+
+
+#start ranWord
+def ranWord(aList):
+
+    #Check if the list runs out of words
+    if len(aList) == 0:
+        print()
+        print("Sorry there are no more insult left")
+        exit()
+    else:
+        #Create a random index
+        rIndex = random.randrange(len(aList))
+
+        #Choose a random word
+        rWord = aList[rIndex]
+
+        #Removal of the random word
+        aList.pop(rIndex)
+
+    return rWord
+#end ranWord
+
+#start ssInsult()
+def ssInsult():
+    """ Insult the user by generating random words """
+
+
+    #Open the file
+    insult = open("shakespeareInsultsList.txt","r")
+
+    #Create first column
+    firstCol = []
+
+    #Create second column
+    secondCol = []
+
+    #Create third column
+    thirdCol = []
+
+    #Loop to add words into list
+    for line in insult:
+
+        #Clean up lines and turns it into a list
+        line = line.strip()
+        line = line.split()
+
+        #Add words from column to list
+        firstCol.append(str(line[0]))
+        secondCol.append(str(line[1]))
+        thirdCol.append(str(line[2]))
+
+    #Print out statements
+    print("Thou", ranWord(firstCol), ranWord(secondCol),ranWord(thirdCol))
+#end ssInsult()
+
+
+#start main()
+def main():
+
+    #Create loop
+    loop = True
+
+    while loop:
+        cont = input("Would you like an insult?y/n ")
+
+        if cont == "y":
+            ssInsult()
+        else:
+            print("Thank you for using this program")
+            loop = False
+#end main()
+
+main()
+    
+    
+
+                
+        
+
+
+
+        
+      
