@@ -1,0 +1,81 @@
+#Hangman Game
+#DS1 Apply Assignments
+import random
+
+#Create a list of word
+wordList = ["hello","paper","computer","monitor"]
+
+sFile = open("dictionary.txt","r")
+for line in sFile:
+    line = line.strip()
+    wordList.append(line)
+
+
+#Select a random word for hangman
+ranIndex = random.randrange(len(wordList))
+ranWord = wordList[ranIndex]
+ranWord = ranWord.lower()
+
+#Turn the word into a list and create spaces
+ranWord = list(ranWord)
+wordSpaces = len(ranWord)
+guessList = []
+
+#Create spaces in an empty list
+for spaces in range(wordSpaces):
+    guessList.append(" ")
+
+#Number of lives the user has
+numLives = 6
+
+print(ranWord)
+
+#GUESSING
+while guessList != ranWord:
+
+    #Ask user for input
+    userLetter = input("Enter a letter: ")
+
+    #Check if letter is in ranWord
+    if userLetter in ranWord:
+
+        #Loop for each letter
+        for index in range(len(ranWord)):
+            if userLetter == ranWord[index]:
+                letterConfirm = True
+
+                #If letter is the same as letter in the random word
+                if letterConfirm:
+                    guessList.pop(index)
+                    guessList.insert(index,userLetter)
+
+                #If the user guessed the word
+                if guessList == ranWord:
+                    print("You've guessed it: The answer is", "".join(ranWord))
+
+        #Print what user have guessed and their number of lives
+        print(guessList)
+        print("You have",numLives," lives")    
+            
+
+    #If not guess again
+    else:
+
+        #Loses 1 life
+        numLives -=1
+        print(guessList)
+        print("You have",numLives," lives left")
+
+        #Check if the number of lives is equal to 0
+        if numLives == 0:
+            print("Game Over")
+            guessList = ranWord 
+        else:
+            pass
+
+
+
+
+
+
+
