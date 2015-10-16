@@ -1,0 +1,95 @@
+# Animate Snow
+
+import pygame
+import random
+
+# Needed to initialize pygame
+pygame.init()
+
+# Define some Constants
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+
+SCREEN_WIDTH = 700
+SCREEN_HEIGHT = 500
+
+NUM_SNOWFLAKES = 500
+
+# Create a screen
+size = [SCREEN_WIDTH,SCREEN_HEIGHT]
+screen = pygame.display.set_mode(size)
+pygame.display.set_caption("Animate Snow")
+
+# Used to manage how fast the screen updates
+clock = pygame.time.Clock()
+
+#Create snowflakes size
+snowSz = []
+for i in range(NUM_SNOWFLAKES):
+    snowSz.append(random.randint(5,20))
+
+#Create wind list
+windL = []
+for i in range(NUM_SNOWFLAKES):
+    windL.append(random.randint(1,10))
+
+# Create snowflakes and store them in a list
+xSnowList = []
+ySnowList = []
+for i in range(NUM_SNOWFLAKES):
+    xSnowList.append(random.randint(0,SCREEN_WIDTH - 5))
+    ySnowList.append(random.randint(0,SCREEN_HEIGHT - 5))
+
+
+#Loop until the user clicks the close button.
+loop = True
+
+# -------- Main Program Loop -----------
+while loop:
+    # EVENT PROCESSING
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            loop = False
+
+
+    # DRAW COMMANDS
+    screen.fill(BLACK)
+
+    # Draw and move snowflakes
+    for i in range(NUM_SNOWFLAKES):
+        x = xSnowList[i]
+        y = ySnowList[i]
+        s = snowSz[i]
+        w = windL[i]
+        pygame.draw.ellipse(screen,WHITE,[x,y,s,s])
+
+        if y < SCREEN_HEIGHT and x < SCREEN_WIDTH:
+            # Move down
+            ySnowList[i] = y + 5
+
+            
+            # Move sideways
+            if s > w:
+                xSnowList[i] = (x + w)- 5
+            else:
+                xSnowList[i] = (x + w) - 3
+
+        else:
+            # Reposition to top of screen
+            xSnowList[i] = random.randint(0,SCREEN_WIDTH-5)
+            ySnowList[i] = random.randint(-50,0)
+
+
+    # Update Screen
+    pygame.display.flip()
+
+    # Set frames per second
+    clock.tick(30)
+# -------- End of Main Program Loop --------
+
+
+# Close the window and quit.
+pygame.quit()
+
