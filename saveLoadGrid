@@ -1,0 +1,112 @@
+# Animate Snow
+
+import pygame
+import random
+
+# Needed to initialize pygame
+pygame.init()
+
+# Define some Constants
+
+colour = [(255, 255, 255),(0, 0, 0)]
+white = 0
+black = 1
+
+
+SCREEN_WIDTH = 500
+SCREEN_HEIGHT = 500
+
+# Create a screen
+size = [SCREEN_WIDTH,SCREEN_HEIGHT]
+screen = pygame.display.set_mode(size)
+pygame.display.set_caption("Clickable Grid")
+
+# Used to manage how fast the screen updates
+clock = pygame.time.Clock()
+
+# Create a 2-D list to represent a grid.
+# Initialize grid values to 0 (white)
+width = 50
+height = 50
+numColumns = 10
+numRows = 10
+currentColour = black
+
+grid = []
+for row in range(numRows):
+    grid.append([])
+    for column in range(numColumns):
+        grid[row].append(white)
+
+
+#Loop until the user clicks the close button.
+loop = True
+
+# -------- Main Program Loop -----------
+while loop:
+    # EVENT PROCESSING
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            loop = False
+
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            # Get Grid Location of mouse click
+            pos = pygame.mouse.get_pos()
+            row = pos[1] // height
+            column = pos[0] // width
+
+            # Set clicked grid location to the current colour
+            grid[row][column] = currentColour
+
+
+        elif event.type == pygame.KEYDOWN:
+            # Use number keys to control current colour
+            if event.key == pygame.K_1:
+                grid = []
+                for row in range(numRows):
+                    grid.append([])
+                    for column in range(numColumns):
+                        grid[row].append(white)
+
+            #Saving of grid
+            elif event.key == pygame.K_2:
+                saveFile = open("savedClickableGrid2.txt","w")
+                for row in range(numRows):
+                    writeString = ""
+                    for item in grid[row]:
+                        writeString += str(item)
+                    writeString += "\n"
+                    saveFile.write(writeString)
+
+            #Loading of grid
+            elif event.key == pygame.K_3:
+                loadFile = open("savedClickableGrid2.txt","r")
+                grid=[]
+                
+                for line in loadFile:
+                    line = line.strip()
+                    line = list(line)
+                    grid.append(line)
+                
+                    
+
+    # Draw the grid.  Values of 0 are white, 1 is black.
+    for row in range(numRows):
+        for column in range(numColumns):
+            tile = grid[row][column]
+            tileColour = colour[int(tile)]
+            pygame.draw.rect(screen,tileColour,
+                             [width * column, height * row, width, height])
+
+
+    # Update Screen
+    pygame.display.flip()
+
+    # Set frames per second
+    clock.tick(30)
+# -------- End of Main Program Loop --------
+
+
+# Close the window and quit.
+pygame.quit()
+
