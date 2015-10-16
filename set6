@@ -1,0 +1,44 @@
+#DS1
+#Set 6
+
+#Write code that iwll nicely print out all the info for "Larry B"
+#Write code that will add a player(name:"Dr.J",point:48,rebounds:14,assist:11
+#to the parallel list)
+
+name = ["Michale J.","Magic J.","Larry B.","Wilt C."]
+points = [ 42,37,45,50 ]
+rebounds = [12,15,20,30]
+assits = [12,18,13,5]
+
+#Group lists into a big function of lists
+def player():
+    name = ["Michale J.","Magic J.","Larry B.","Wilt C."]
+    points = [ 42,37,45,50 ]
+    rebounds = [12,15,20,30]
+    assits = [12,18,13,5]
+
+    return[name,points,rebounds,assits]
+
+#Set values for player
+playerData = player()
+playerName = playerData[0]
+playerPoints = playerData[1]
+playerRebounds = playerData[2]
+playerAssits= playerData[3]
+
+#Print out Lary's data
+print(playerName[2],playerPoints[2],playerRebounds[2],playerAssits[2])
+
+#Add things to the list
+playerName.append("Dr.J")
+playerPoints.append(48)
+playerRebounds.append(14)
+playerAssits.append(11)
+
+#Print list to confirm changes
+print(playerData)
+
+
+
+
+
