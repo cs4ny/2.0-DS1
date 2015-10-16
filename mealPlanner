@@ -1,0 +1,154 @@
+#Meal Planner
+import random
+
+#start main()
+def main():
+
+    #List with meals ideas
+    mealList = ["apple","orange","chicken","banana",
+                "fish","pork","steak","potato",
+                "spinach","letuce","tomato"]
+
+    #Set currentMeal()
+    currentMeal = []
+    
+    #Loop
+    loop = True
+
+    #True
+    while loop:
+        
+        #Show the menu
+        interface()
+        
+        #Ask user for input
+        userInput = int(input("Please select your choice "))
+
+        #Options
+
+        #Display of menu
+        if userInput == 1:
+            if currentMeal == []:
+                print("There is no items in your menu")
+            else:
+                displayMeal(currentMeal)
+
+        #Display of basic menu
+        elif userInput == 2:
+            currentMeal = setMeals(mealList)
+            displayMeal(currentMeal)
+
+        #Display of entered meal plan
+        elif userInput == 3:
+            currentMeal = enterMeal()
+            displayMeal(currentMeal)
+        
+        #Display of random meal plan
+        elif userInput == 4:
+            currentMeal = ranMeals(mealList)
+            displayMeal(currentMeal)
+
+        #Display of chaging meal plan
+        elif userInput ==  5:
+            if currentMeal == []:
+                print("Please create a meal plan first by selecting other choices ")
+            else:
+                currentMeal = editMeal(currentMeal)
+                displayMeal(currentMeal)
+
+        #Exit
+        elif userInput == 6:
+            loop = False
+
+        #Invalid Choice
+        else:
+            print("You've selected an invalid choice")
+            loop = False
+
+
+#displayMeal()
+def displayMeal(aList):
+    for i in range(len(aList)):
+        print("Your meal for day" ,i+1, "is", aList[i])
+
+
+
+#start interface()   
+def interface():
+    print()
+    print("Welcome to the Meal Planner")
+    print()
+    print("1 : View your menu")
+    print("2 : Display a Basic Meal Plan ")
+    print("3 : Enter a Meal Plan ")
+    print("4 : Random Meal Plan ")
+    print("5 : Edit a Day ")
+    print("6 : Exit ")
+    print()
+
+
+    
+#start setMeals
+def setMeals(aList):
+    #Set new List
+    newList=[]
+
+    #Loop 
+    for i in range (7):
+        newList.append(aList[i])
+
+    return newList
+
+
+    
+#List for meals of each day of the week
+#Random list from meals ideas
+def ranMeals(aList):
+    newList = []
+
+    for i in range(7):
+        ranItem = aList[random.randrange(len(aList))]
+        newList.append(ranItem)
+
+    return (newList)
+
+
+
+#start enterMeal()
+def enterMeal():
+    #Create a new list
+    newList = []
+
+    #Loop for user
+    for i in range (7):
+        mealInput = input("Please enter your meal: ")
+        newList.append(mealInput)
+        
+    return newList
+
+
+        
+#start editMeal()
+def editMeal(aList):
+
+    #User's input
+    dayChange = int(input("Please enter a day that you want to change meal of: "))
+    mealChange = input("Please enter an alternate meal: ")
+
+    #Change meal
+    aList[dayChange-1] = mealChange
+
+    #Create a new list
+    newList = []
+
+    #Loop for menu
+    for meal in aList:
+        newList.append(meal)
+        
+    return newList     
+
+
+    
+#invoke main()
+main()
+
