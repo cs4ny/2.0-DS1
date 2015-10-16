@@ -1,0 +1,46 @@
+#DS1
+#Set 2 Problems
+
+import random
+#1. Write code to create a list of 100 random generate intergesrs from 0 to 10
+
+aList = []
+for i in range (100):
+    aList.append(random.randint(0,10))
+print (aList)
+
+
+
+
+#2. Write code that uses a loop to create a list of ... five test marks entered by the user. any number of test marks entered by the user.
+    #Five marks by the user
+aList = []
+for i in range(5):
+    aList.append(int(input("Please enter a number:")))
+print(aList)
+
+
+
+    #Any mark by user
+numMark = int(input("Please enter the number of times you wish to enter the marks:"))
+
+for i in range(numMark):
+    aList.append(int(input("Please enter a number:")))
+print(aList)
+
+
+#3 Write code to create a list of dictionary words from the file “dictionary.txt”.  Download “dictionary.txt” from the DS1 Examples page.
+
+aList2 = []
+
+di = open("dictionary.txt","r")
+
+for line in di:
+    line = line.strip()
+    aList2.append(str(line))
+
+print (aList2[2:10]) #Too much info, use slices
+
+
+
+
