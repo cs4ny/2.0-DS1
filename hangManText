@@ -1,0 +1,62 @@
+#Hangman Game
+#DS1 Apply Assignments
+import random
+
+#Create a list of word
+wordList = ["hello","paper","computer","monitor"]
+
+#Select a random word for hangman
+ranIndex = random.randrange(len(wordList))
+ranWord = wordList[ranIndex]
+
+#Turn the word into a list and create spaces
+ranWord = list(ranWord)
+wordSpaces = len(ranWord)
+guessList = []
+
+#Create spaces in an empty list
+for spaces in range(wordSpaces):
+    guessList.append(" ")
+
+#Number of lives the user has
+numLives = 5
+
+print(ranWord)
+
+#GUESSING
+while ranWord != guessList:
+
+    #Ask user for input
+    userLetter = input("Enter a letter: ")
+
+    #Check if letter is in ranWord
+    if userLetter in ranWord:
+        userIndex = ranWord.index(userLetter)
+        guessList.pop(userIndex)
+        guessList.insert(userIndex,userLetter)
+        print(guessList)
+        print("You have",numLives," lives")
+        if guessList == ranWord:
+            print("You've guessed it: The answer is", "".join(ranWord))
+        else:
+            pass
+                
+            
+
+    #If not guess again
+    else:
+        numLives -=1
+        print(guessList)
+        print("You have",numLives," lives left")
+        if numLives == 0:
+            print("Game Over")
+            guessList = ranWord 
+        else:
+            pass
+
+
+
+
+
+
+
