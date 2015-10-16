@@ -1,0 +1,47 @@
+#DS1
+#Set 1 Problems
+
+#1 Write code to create a list of five odd numbers
+fiveNumList = [ 1,3,5,7,9 ]
+
+#2 Write code to create a list of four names
+fourNameList = ["John","Mary","Bob","Jack"]
+
+#3 Predict the output of the following code:
+aList = [3,6,9,12,15,18]
+
+print( aList[0] )   #Print 3
+print( aList[4] )   #Print 15
+print( aList[6] )   #Error: out of index
+
+#4  Write code to access and print out “yellow” from aList
+    #Write code to access and print out “green” from aList
+
+aList = ["red","green","blue","yellow","purple"]
+
+print(aList[3])
+print(aList[1])
+
+#5 Predict the output of the following code:
+aList = ["T", "R", "E", "E"]
+
+aList[0] = "F"
+print(aList)    #F,R,E,E
+
+aList[1] = "L"
+print(aList)    #F,L,E,E
+
+aList[3] = "D"
+print(aList)    #F,L,E,D
+
+#6 Write code to change the 3 and the 4 to 1.
+aList = [1,2,3,2,4,2]
+
+aList[2] = 1
+aList[4] = 1
+print (aList)
+
+
+
+
+                
